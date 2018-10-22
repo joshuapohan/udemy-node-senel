@@ -9,7 +9,7 @@ var weatherForecast = (lat, lnd) =>{
 	}, (error, response, body) => {
 		if(error){
 			console.log(error);
-		}else{
+		}else if(response.statusCode === 200){
 			console.log(body.timezone);
 			console.log(body.latitude);
 			console.log(body.longitude);
