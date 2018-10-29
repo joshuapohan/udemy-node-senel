@@ -3,6 +3,8 @@ const express = require('express');
 const hbs = require('hbs');
 const weatherapp = require('./app-promise');  
 
+
+const port = process.env.PORT || 3000;
 app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -59,6 +61,6 @@ app.get('/bad', (request, response) => {
 	})
 });
 
-app.listen(3000, () => {
+app.listen(port, () => {
 	console.log('Server is up on port 3000');
 });
