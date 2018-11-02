@@ -91,11 +91,16 @@
     .sticky + .content {
       padding-top: 100px;
     }
+
+    /*to remove the blue border when the div is focused on*/
+    #root{
+      outline-width: 0;
+    }
   </style>
 </head>
 <body>
 
-  <div id="root">React has not rendered yet</div>
+  <div id="root" tabindex="0">React has not rendered yet</div>
   <script type="text/babel">
 
       const {
@@ -182,9 +187,15 @@
                     <div className="navbar-header">
                        <a className="navbar-brand link-no-style-white third-text-color main-text-font" href="#/">Test SPA</a>
                        <ul className='nav navbar-nav header'>
-                          <li><NavLink exact to='/'>Home</NavLink></li>
-                          <li><NavLink to='/test2'>Test 2</NavLink></li>
-                          <li><NavLink to='/test3'>Test 3</NavLink></li>
+                          <li><NavLink exact to='/'><div onClick={() => {
+                            document.getElementById('root').focus();
+                          }}>Home</div></NavLink></li>
+                          <li><NavLink exact to='/test2'><div onClick={() => {
+                            document.getElementById('root').focus();
+                          }}>Test 2</div></NavLink></li>
+                          <li><NavLink exact to='/test3'><div onClick={() => {
+                            document.getElementById('root').focus();
+                          }}>Test 3</div></NavLink></li>
                         </ul>
                     </div>
                 </div>
@@ -192,33 +203,87 @@
           );
     };
 
-    const Home = () => {
-      return(
-        <div>
-          <Post />
-        </div>
-      );
-    };
+//    const Home = () => {
+//     return(
+//        <div>
+//          <Post />
+//        </div>
+//      );
+//    };
 
-    const Test2 = () => {
-      return(
-        <div>
-          <h1>Test2</h1>  
-        </div>
-      );  
-    };
+//    const Test2 = () => {
+//      return(
+//        <div>
+//          <h1>Test2</h1>  
+//        </div>
+//      );  
+//    };
 
-    const Test3 = () => {
-      return(
-        <div>
-          <h1>Test3</h1>  
-        </div>
-      );  
-    };
+//    const Test3 = () => {
+//      return(
+//        <div>
+//          <h1>Test3</h1>  
+//        </div>
+//      );  
+//    };
+
+    class Home extends React.Component {
+
+      componentDidMount(){
+        document.getElementById('root').focus();
+        console.log('Mounted');
+      }
+
+      render(){
+        return(
+          <div>
+            <Post />
+          </div>
+        );
+      }
+    }
+
+    class Test2 extends React.Component {
+
+      componentDidMount(){
+        document.getElementById('root').focus();
+        console.log('Mounted');
+      }
+
+      render(){
+        return(
+          <div>
+            <h1>Test2</h1>  
+          </div>
+        ); 
+      }
+    }
+
+    class Test3 extends React.Component {
+      
+      componentDidMount(){
+        var elem = document.getElementById('root');
+        elem.focus();
+        console.log('Mounted');
+        console.log(elem);
+      }
+
+      render(){
+        return(
+          <div>
+            <h1>Test3</h1>  
+          </div>
+        ); 
+      }
+    }
 
     class Main extends React.Component {
       constructor(props){
         super(props);
+      }
+
+      componentDidMount(){
+        console.log('Mounted');
       }
 
       render(){
